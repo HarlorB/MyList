@@ -4,13 +4,30 @@
     {
         static void Main(string[] args)
         {
-            MyList<int> list = new MyList<int>();
-            list.Add(1);
-            list.Add(1);
-            list.Insert(1,111);
-            Console.WriteLine(list[0]);
-            Console.WriteLine(list.Length);
+            var list = new MyList<Father>();
+            list.Add(new Son());
+            list.Add(new Daughter());
+            for (int i = 0; i < list.Length; i++)
+            {
+                list[i].Foo();
+            }
+            
         }
+    }
+
+    public abstract class Father
+    {
+        public abstract void Foo();
+    }
+
+    class Son : Father
+    {
+        public override void Foo() => Console.WriteLine("Son's Foo");
+    }
+
+    class Daughter : Father
+    {
+        public override void Foo() => Console.WriteLine("Daughter's Foo");
     }
 }
 
